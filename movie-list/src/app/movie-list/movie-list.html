@@ -1,0 +1,40 @@
+<div class="page">
+  <header class="toolbar">
+    <h1 class="title">Movie List</h1>
+    
+
+    <div class="avg" aria-label="Average rating">
+      <mat-icon>star</mat-icon>
+      <span>{{ averageRating }}</span>
+    </div>
+
+    <mat-form-field appearance="outline" class="genre-field">
+      <mat-label>Filter by genre</mat-label>
+      <mat-select [value]="selectedGenre" (selectionChange)="onGenreChange($event.value)">
+        <mat-option value="All">All</mat-option>
+        <mat-option *ngFor="let g of genres" [value]="g">{{ g }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </header>
+
+  <section class="grid">
+    <mat-card class="movie-card"
+              *ngFor="let m of filtered; trackBy: trackById"
+              [class.top-rated]="isTopRated(m.rating)">
+      <img mat-card-image [src]="m.posterUrl" [alt]="m.title" />
+      <mat-card-content>
+        <div class="movie-header">
+          <div class="movie-title">{{ m.title }}</div>
+          <div class="genre">{{ m.genre }}</div>
+        </div>
+
+        <div class="rating">
+          <mat-icon *ngFor="let i of stars">{{ starIcon(m.rating, i) }}</mat-icon>
+          <span class="rating-num">{{ m.rating | number:'1.1-1' }}</span>
+        </div>
+
+        <p class="desc">{{ m.description }}</p>
+      </mat-card-content>
+    </mat-card>
+  </section>
+</div>

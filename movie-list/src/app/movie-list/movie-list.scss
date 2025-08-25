@@ -1,0 +1,98 @@
+.page {
+  padding: 16px;
+}
+
+.toolbar {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.title {
+  margin: 0;
+}
+
+.avg {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 600;
+}
+
+.genre-field {
+  min-width: 200px;
+}
+
+/* Responsive grid of cards */
+.grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+
+/* Card styling */
+.movie-card {
+  overflow: hidden;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.movie-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,.15);
+}
+
+/* Highlight top-rated movies */
+.top-rated {
+  border: 2px solid #43a047; /* green-600 */
+}
+
+/* Inside card */
+.movie-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.movie-title {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.genre {
+  opacity: .75;
+  font-size: .9rem;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin: 4px 0 8px;
+}
+
+.rating mat-icon {
+  font-variation-settings: 'FILL' 1; /* works for Material Icons outlined/filled */
+  vertical-align: middle;
+}
+
+.rating-num {
+  margin-left: 6px;
+  font-weight: 600;
+}
+
+.desc {
+  margin: 0;
+  opacity: .85;
+}
+
+/* Small screens tweaks */
+@media (max-width: 599px) {
+  .toolbar {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .genre-field { min-width: 100%; }
+}
