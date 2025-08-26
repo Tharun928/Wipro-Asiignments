@@ -1,0 +1,57 @@
+<mat-toolbar color="primary">
+  <span>🎵 Music Playlist</span>
+  <span class="spacer"></span>
+  <button mat-button (click)="clearFilters()">Clear Filters</button>
+</mat-toolbar>
+
+<div class="filters">
+  <mat-form-field appearance="outline">
+    <mat-label>Artist</mat-label>
+    <mat-select [value]="selectedArtist()" (valueChange)="selectedArtist.set($event)">
+      <mat-option [value]="null">All</mat-option>
+      <mat-option *ngFor="let a of artists()" [value]="a">{{ a }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Album</mat-label>
+    <mat-select [value]="selectedAlbum()" (valueChange)="selectedAlbum.set($event)">
+      <mat-option [value]="null">All</mat-option>
+      <mat-option *ngFor="let a of albums()" [value]="a">{{ a }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-chip-set>
+    <mat-chip *ngIf="selectedArtist()">Artist: {{ selectedArtist() }}</mat-chip>
+    <mat-chip *ngIf="selectedAlbum()">Album: {{ selectedAlbum() }}</mat-chip>
+    <mat-chip>Showing {{ filteredSongs().length }} / {{ songs().length }}</mat-chip>
+  </mat-chip-set>
+</div>
+
+<div class="grid">
+  <mat-card *ngFor="let song of filteredSongs()"
+            [class.top-rated]="isTopRated(song.rating)">
+    <img class="cover" [src]="song.coverUrl" [alt]="song.name" loading="lazy" />
+    <mat-card-header>
+      <mat-card-title>{{ song.name }}</mat-card-title>
+      <mat-card-subtitle>{{ song.artist }} • {{ song.album }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="rating">
+        <mat-icon *ngFor="let filled of starsFor(song.rating)">
+          {{ filled ? 'star' : 'star_border' }}
+        </mat-icon>
+        <span class="rating-number">{{ song.rating.toFixed(1) }}</span>
+        <span class="duration">{{ song.duration }}</span>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+      <button mat-raised-button>
+        <mat-icon>play_arrow</mat-icon>
+        Play
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
