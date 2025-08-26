@@ -1,0 +1,36 @@
+form {
+  display: flex;
+  flex-direction: column; /* stack fields vertically */
+  gap: 15px;              /* space between fields */
+}
+
+mat-form-field {
+  width: 50%;            /* make each input full width */
+}
+.submit-btn {
+  width: auto;          /* button fits text only */
+  min-width: 300px;     /* keeps it neat */
+  height: 36px;         /* smaller height */
+  font-size: 14px;      /* slightly smaller text */
+  padding: 0;
+  border-radius: 10px;  /* rounded like Material */
+  align-self: center;   /* centers button horizontally */
+}
+
+.feedback-container {
+  display: flex;
+  justify-content: center;   /* horizontal center */
+  align-items: center;       /* vertical center */
+  min-height: 100vh;         /* full page height */
+  background-color: #f8f8f8; /* light bg (optional) */
+  align-self: center;
+}
+
+.feedback-form {
+  width: 400px;              /* fixed width */
+  padding: 20px;
+  border-radius: 8px;
+  background: white;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+  align-self: center;
+}

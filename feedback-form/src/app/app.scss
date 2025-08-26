@@ -1,0 +1,19 @@
+.card {
+  max-width: 640px;
+  margin: 2rem auto;
+  padding: 1rem 1.25rem;
+}
+
+.title {
+  margin: 0 0 1rem;
+  font-weight: 600;
+}
+
+form {
+  display: grid;
+  gap: 1rem;
+}
+
+.full {
+  width: 50%;
+}

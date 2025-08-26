@@ -1,0 +1,71 @@
+<mat-card class="card">
+  <h2 class="title">Feedback</h2>
+
+  <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+    <!-- Name -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" placeholder="Your name" />
+      <mat-error *ngIf="f.name.touched && f.name.hasError('required')">
+        Name is required.
+      </mat-error>
+
+      <mat-error *ngIf="f.name.touched && f.name.hasError('minlength')">
+        Please enter at least 2 characters.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Email -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" formControlName="email" placeholder="name@example.com" />
+      <mat-error *ngIf="f.email.touched && f.email.hasError('required')">
+        Email is required.
+      </mat-error>
+      <mat-error *ngIf="f.email.touched && f.email.hasError('email')">
+        Please enter a valid email address.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Subject (max 40) -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Subject</mat-label>
+      <input
+        matInput
+        formControlName="subject"
+        maxlength="40"
+        placeholder="Short subject"
+      />
+      <mat-hint align="end">{{ f.subject.value?.length || 0 }}/40</mat-hint>
+      <mat-error *ngIf="f.subject.touched && f.subject.hasError('required')">
+        Subject is required.
+      </mat-error>
+      <mat-error *ngIf="f.subject.touched && f.subject.hasError('maxlength')">
+        Subject cannot exceed 40 characters.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Comments (max 350) -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Comments / Issue</mat-label>
+      <textarea
+        matInput
+        formControlName="comments"
+        rows="5"
+        maxlength="350"
+        placeholder="Describe your issue or feedback"
+      ></textarea>
+      <mat-hint align="end">{{ f.comments.value?.length || 0 }}/350</mat-hint>
+      <mat-error *ngIf="f.comments.touched && f.comments.hasError('required')">
+        Please add a comment.
+      </mat-error>
+      <mat-error *ngIf="f.comments.touched && f.comments.hasError('maxlength')">
+        Comments cannot exceed 350 characters.
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" class="submit-btn" type="submit" [disabled]="form.invalid">
+      Submit
+    </button>
+  </form>
+</mat-card>
